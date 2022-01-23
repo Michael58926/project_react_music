@@ -69,7 +69,7 @@ function Artist() {
         <h2>Full Discography</h2>
         <Grid container spacing={2}>
           {albums.map((album, index) => (
-            <Grid item xl={2} lg={3} md={4} sm={6} xs={6} key={index}>
+            <Grid item xl={2} lg={3} md={4} sm={6} xs={12} key={index}>
               <Card>
                 <CardContent>
                   <Typography variant="h6">{album.name}</Typography>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import axios from '../config/axios.config.js'
+import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import Box from '@material-ui/core/Box'
@@ -94,39 +95,49 @@ function Album() {
           <strong>add</strong> a song to your favourites list
         </p>
         <br />
-        <Card sx={{ display: 'flex' }}>
-          <CardMedia
-            component="img"
-            sx={{ width: 300, margin: 5 }}
-            image={album.images[1].url}
-          />
-
-          <Box sx={{ margin: 5 }}>
-            <strong>Record Label: </strong> {album.label}
-            <br />
-            <strong>Release Date: </strong> {album.release_date}
-            <br />
-            <br />
-            <strong>Tracks:</strong> {album.total_tracks}
-            <br />
-            <strong>Popularity: </strong> {album.popularity}
-            <br />
-            <br />
-            {album.artists.map((artist, index) => (
-              <Chip
-                label={artist.name}
-                key={index}
-                onClick={() => {
-                  history.push(`/home/artist/${artist.id}`)
+        <Card sx={{ display: 'flex', paddingTop: 5, paddingBottom: 5 }}>
+          <Grid container>
+            <Grid item>
+              <CardMedia
+                component="img"
+                sx={{
+                  width: 280,
+                  marginLeft: 5,
+                  marginRight: 5,
+                  marginBottom: 5
                 }}
+                image={album.images[1].url}
               />
-            ))}
-            <br />
-            <br />
-            {album.copyrights.map((copyright, index) => (
-              <div key={index}>{copyright.text}</div>
-            ))}
-          </Box>
+            </Grid>
+            <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+              <Box sx={{ marginLeft: 5, marginRight: 5 }}>
+                <strong>Record Label: </strong> {album.label}
+                <br />
+                <strong>Release Date: </strong> {album.release_date}
+                <br />
+                <br />
+                <strong>Tracks:</strong> {album.total_tracks}
+                <br />
+                <strong>Popularity: </strong> {album.popularity}
+                <br />
+                <br />
+                {album.artists.map((artist, index) => (
+                  <Chip
+                    label={artist.name}
+                    key={index}
+                    onClick={() => {
+                      history.push(`/home/artist/${artist.id}`)
+                    }}
+                  />
+                ))}
+                <br />
+                <br />
+                {album.copyrights.map((copyright, index) => (
+                  <div key={index}>{copyright.text}</div>
+                ))}
+              </Box>
+            </Grid>
+          </Grid>
         </Card>
         <br />
         <h2>Track Listing</h2>
@@ -135,7 +146,7 @@ function Album() {
             <QueueMusicIcon
               sx={{
                 display: 'block',
-                margin: 3,
+                margin: 2,
                 verticalAlign: 'middle',
                 cursor: 'pointer'
               }}
